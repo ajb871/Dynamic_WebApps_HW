@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sun</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+
+	<div class="loc-form">
+		<h1>sun calculator</h1>
+		<p>Enter Longitude &amp; Latitude: </p>
+		<p>(address support coming soon)</p>
+		<!-- User input form -->
+		<form action="/calculator" method="post" align="center">
+			<input type="text" name="latitude">
+			<input type="text" name="longitude">
+			<input type="submit" name="submit-loc">
+		</form>
+
+		<!-- Once a response is recieved -->
+		<% if(sun_data != null){ %>
+		<h2> time until <%= sun_data.type %> : </h2>
+		<h3> <%= sun_data.timeDiff[0] %> hours and <%= sun_data.timeDiff[1] %> minutes </h3>
+		<p> {at <%= sun_data.timeEvent[0] %>:<%= sun_data.timeEvent[1] %> <%= sun_data.timeEnd %>} </p>
+			<!-- Script for dynamic background -->
+			<script type="text/javascript">
+				var sunset_js = <%-JSON.stringify(sun_data)%>;
+				let hourDiff = sunset_js.timeDiff[0];
+				if(hourDiff < 3){
+					document.body.style.backgroundColor = 'orange';
+				}
+			</script>
+
+			<p> <%= %> </p>
+
+		<% } %>	
+	</div>
+
+	</body>
+	</html>

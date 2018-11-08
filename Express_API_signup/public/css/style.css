@@ -1,0 +1,11 @@
+.loc-form{
+	text-align: center;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+body input {
+	margin: 8px;
+}
