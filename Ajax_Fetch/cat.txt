@@ -1,0 +1,6 @@
+{
+"name":"Cat",
+"size":"7.9 - 9.9",
+"lifespan":"10 - 20",
+"bio":"The domestic cat is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. They are often valued by humans for companionship and for their ability to hunt vermin."
+}

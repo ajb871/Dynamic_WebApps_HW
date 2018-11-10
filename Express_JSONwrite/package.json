@@ -1,0 +1,14 @@
+{
+  "name": "express_json",
+  "version": "1.0.0",
+  "description": "writing JSON files with express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ari bennett",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

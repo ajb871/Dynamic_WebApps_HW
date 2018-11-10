@@ -1,0 +1,1 @@
+This is a web app that utilizes Express to read and write from JSON files. Homework for Dynamic Web Application 2018.

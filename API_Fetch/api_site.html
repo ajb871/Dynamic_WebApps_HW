@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grab Pokemon</title>
+
+	<style type="text/css">
+		
+	</style>
+
+</head>
+<!--generate one pokemon on load-->
+<body onload="newPoke()">
+
+<!-- Template for data -->
+	<h1>Your Pokemon Is.....</h1>
+	<img src="" id="poke_img">
+	<h2 id="poke_name"></h2>
+	<ul id="Pokemon"></ul>
+	<h3>Main Type:</h3>
+	<p id="poke_type"></p>
+<!-- Button for new pokemon! -->
+	<button onclick="newPoke();">NEW POKEMON</button>
+
+
+<script type="text/javascript">
+		
+		var poke_name = document.getElementById('poke_name');
+		var poke_type = document.getElementById('poke_type');
+		var poke_img = document.getElementById('poke_img');
+		var button = document.getElementById('button');
+
+		//API source:
+		const url = 'https://pokeapi.co/api/v2/pokemon/';
+
+		var newPoke = () => {
+			//generate random pokemon "number"
+			//(there are 802 pokemon total)
+			var poke_no = Math.floor(Math.random() * 802) + 1;
+			console.log(poke_no);
+			//add pokemon # to url to get THAT pokemons data from API
+			var poke_url = url.concat(poke_no + "/");
+
+			fetch(poke_url)
+			.then((resp) => resp.json())
+			.then(function(data) {
+				let pokemon = data;
+				let name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+				let types_arr = pokemon.types;
+				let types = "";
+				let img = pokemon.sprites.front_default;
+				//If multiple types - Add all types to String
+				for(let value of types_arr){
+					console.log(value);
+						let type = value.type.name;
+						console.log(type);
+						//Uppercase first letter
+						type = type[0].toUpperCase() + type.slice(1);
+						types += " " + type;
+				}
+				//debug
+				console.log(pokemon);
+				console.log(name);
+				console.log(types);
+				//Put data into HTML
+				poke_name.innerHTML = name;
+				poke_type.innerHTML = types;
+				poke_img.src = img;
+
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+		}
+
+</script>
+
+</body>
+</html>

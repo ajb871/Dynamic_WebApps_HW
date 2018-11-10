@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Fetch - Ari Bennett</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+
+	<style>
+		html{
+		  font-family: 'Lato', sans-serif;
+		}
+		body {
+		  text-align: center;
+		  margin: 0 auto;
+		}
+		#content{
+		  background-color: #D8D8D8;
+		  margin: 30px;
+		  padding: 15px;
+		}
+		select {
+		  width: 350px;
+		  padding: 5px;
+		  margin: 25px;
+		  margin-top: 0px;
+		}
+		#animal_content h2{
+			margin: 0px;
+			font-size: 16px;
+		}
+		#animal_content p{
+			margin: 0px;
+			margin-bottom: 10px;
+		}
+	 </style>
+</head>
+
+<body>
+
+<div id="content">
+	<h1>Learn About a Pet!</h1>
+
+	<!--selectors-->
+	<form>
+		<label for="animal_choice"></label>
+		<select id="animal_choice" name="animal_choice">
+			<option></option>
+			<option>Cat</option>
+			<option>Dog</option>
+			<option>Ferret</option>
+			<option>Bunny</option>
+		</select>
+	</form>
+
+	<div id="animal_content" align="center" style="visibility: hidden;">
+		<!--text & image placeholders-->
+		<img id="animal_photo" src="" style="width: 300px">
+
+		<h2>Name:</h2>
+		<p id="name"></p>
+
+		<h2>Avg Size:</h2>
+		<p id="size"></p>
+
+		<h2>Avg Lifespan:</h2>
+		<p id="lifespan"></p>
+
+		<h2>Bio:</h2>
+		<p id="bio"></p>
+	</div>
+</div>
+
+	<script type="text/javascript">
+		
+		//create variable from selector choice
+		var animal_choice = document.querySelector('select');
+		//I couldn't get these variable to work in the fetch funtion -> using name.innerHTML =...; or name.textContent =...; never worked, however simply using document.getElementById('name') =...; within the fetch function worked
+		/*
+		var name = document.getElementById('name');
+		var size = document.getElementById('size');
+		var lifespan = document.getElementById('lifespan');
+		var bio = document.getElementById('bio');
+		*/
+		var image = document.getElementById('animal_photo');
+
+		//set selection to current choice, and update with updateAnimal func
+		animal_choice.onchange = function(){
+			var animal = animal_choice.value;
+			updateAnimal(animal);
+			document.getElementById('animal_content').style.visibility = "visible";
+		}
+
+		function updateAnimal(animal) {
+			//console log change for debug
+			console.log('The animal is ' + animal);
+			animal = animal.toLowerCase();
+			//create image source string
+			var img_src = animal + '.jpeg';
+			console.log(img_src);
+			image.src = img_src; //change image
+			//create text source string
+			var text_src = animal + '.txt';
+			console.log(text_src);
+
+			fetch(text_src).then(function(response) {
+				response.text().then(function(text){
+					var obj = JSON.parse(text);
+					console.log(obj);
+					//Populate placeholders with obj content
+					document.getElementById('name').innerHTML = obj.name;
+					document.getElementById('size').innerHTML = obj.size;
+					document.getElementById('lifespan').innerHTML = obj.lifespan;
+					document.getElementById('bio').innerHTML = obj.bio;
+				});
+			});
+		}
+
+	</script>
+
+</body>
+</html>

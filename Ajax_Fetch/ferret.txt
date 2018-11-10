@@ -1,0 +1,6 @@
+{
+"name":"Ferret",
+"size":"1.5 - 4.4",
+"lifespan":"6 - 10",
+"bio": "The ferret is the domesticated form of the European polecat, a mammal belonging to the same genus as the weasel, Mustela of the family Mustelidae. They typically have brown, black, white, or mixed fur."
+}

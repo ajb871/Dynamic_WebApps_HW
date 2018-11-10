@@ -1,0 +1,6 @@
+{
+"name":"Bunny",
+"size":"5 - 8",
+"lifespan":"1 - 2",
+"bio": "Rabbits(Bunnies) are small mammals in the family Leporidae of the order Lagomorpha. Oryctolagus cuniculus includes the European rabbit species and its descendants, the world's 305 breeds of domestic rabbit. Sylvilagus includes thirteen wild rabbit species, among them the seven types of cottontail."
+}
